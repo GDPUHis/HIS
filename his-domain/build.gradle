@@ -1,0 +1,53 @@
+group 'HIS'
+version '0.0.1-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    //导入本地的依赖包
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile(
+            'commons-lang:commons-lang:2.6',
+            'commons-logging:commons-logging:1.2',
+
+            'org.springframework:spring-context:4.1.0.RELEASE',
+            'org.springframework:spring-tx:4.1.0.RELEASE',
+            'org.springframework:spring-web:4.1.0.RELEASE',
+            'org.springframework:spring-webmvc:4.1.0.RELEASE',
+            'org.springframework:spring-jdbc:4.1.0.RELEASE',
+            'org.springframework:spring-beans:4.1.0.RELEASE',
+            'org.springframework:spring-test:4.1.0.RELEASE',
+            'org.springframework:spring-aop:4.1.0.RELEASE',
+            'org.aspectj:aspectjrt:1.8.0',
+            'org.aspectj:aspectjweaver:1.8.0',
+            'cglib:cglib-nodep:3.0',
+            'aopalliance:aopalliance:1.0',
+
+            'com.alibaba:fastjson:1.2.7',
+            'org.mybatis:mybatis-spring:1.2.3',
+            'org.mybatis:mybatis:3.3.0',
+            'com.alibaba.druid:druid-wrapper:0.2.9',
+            "mysql:mysql-connector-java:5.1.24",
+
+            'org.codehaus.jackson:jackson-core-asl:1.9.13',
+            'org.codehaus.jackson:jackson-mapper-asl:1.9.13',
+            'com.google.code.gson:gson:2.5',
+
+            'javax.servlet:javax.servlet-api:3.1.0',
+
+            "log4j:log4j:1.2.17",
+            'org.slf4j:slf4j-api:1.7.12'
+
+    )
+
+
+}
