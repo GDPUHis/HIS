@@ -1,0 +1,4 @@
+include 'his-domain'
+include 'his-service'
+include 'his-admin-war'
+
