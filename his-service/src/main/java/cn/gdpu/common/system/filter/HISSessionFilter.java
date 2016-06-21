@@ -22,7 +22,7 @@ import java.io.PrintWriter;
  */
 public class HISSessionFilter extends OncePerRequestFilter{
 
-    private static final String[] ignoreUrlPattern = new PropertiesUtil().getProp4Config("/sysConfig/ignoreUrl-config.properties").getProperty("IGNOREURL").split(",");
+    private static final String[] ignoreUrlPattern = new PropertiesUtil().getProp4Config("/ignoreUrl-config.properties").getProperty("IGNOREURL").split(",");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

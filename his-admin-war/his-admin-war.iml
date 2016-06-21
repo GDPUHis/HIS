@@ -4,7 +4,7 @@
     <facet type="web" name="Web Gradle : his-admin-war-0.0.1-SNAPSHOT.war">
       <configuration>
         <descriptors>
-          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/web.xml" />
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/src/main/webapp/web.xml" />
         </descriptors>
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
