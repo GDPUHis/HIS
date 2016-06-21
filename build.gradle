@@ -1,3 +1,6 @@
+/* 插件 */
+apply plugin: 'java'
+
 allprojects {
     group 'HIS'
     version '0.0.1-SNAPSHOT'
@@ -5,6 +8,14 @@ allprojects {
     apply plugin: 'java'
     apply plugin: 'war'
 
+    /*1.7环境*/
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+    /*UTF-8 很重要*/
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.warnings = false
+    }
     repositories {
         //使用开源中国的maven仓库
         maven { url 'http://maven.oschina.net/content/groups/public/' }

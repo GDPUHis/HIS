@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gdpu.his.dao.user.IUserDAO">
+
+    <sql id="Base_Column_List">
+        id,
+        username,
+        password,
+        name,
+        phone,
+        lineTel,
+        age,
+        gender,
+        jobNumber,
+        positionId,
+        departmentId,
+        creator,
+        craeteDate,
+        lastModifier,
+        lastModDate,
+        status
+    </sql>
+    <insert id="insert" parameterType="cn.gdpu.his.domain.user.User">
+        INSERT INTO eam_user (
+		    username
+		    ,password
+		    ,name
+		    ,phone
+		    ,lineTel
+		    ,age
+		    ,gender
+		    ,jobNumber
+		    ,positionId
+		    ,departmentId
+		    ,creator
+		    ,craeteDate
+		    ,lastModifier
+		    ,lastModDate
+		    ,status
+        ) VALUES (
+		    	#{username}
+		    	,#{password}
+		    	,#{name}
+		    	,#{phone}
+		    	,#{lineTel}
+		    	,#{age}
+		    	,#{gender}
+		    	,#{jobNumber}
+		    	,#{positionId}
+		    	,#{departmentId}
+		    	,#{creator}
+		    	,#{craeteDate}
+		    	,#{lastModifier}
+		    	,#{lastModDate}
+		    	,#{status}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+        	SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <insert id="insertMap" >
+        INSERT INTO eam_user (
+		    username
+		    ,password
+		    ,name
+		    ,phone
+		    ,lineTel
+		    ,age
+		    ,gender
+		    ,jobNumber
+		    ,positionId
+		    ,departmentId
+		    ,creator
+		    ,craeteDate
+		    ,lastModifier
+		    ,lastModDate
+		    ,status
+        ) VALUES (
+		    	#{map.username}
+		    	,#{map.password}
+		    	,#{map.name}
+		    	,#{map.phone}
+		    	,#{map.lineTel}
+		    	,#{map.age}
+		    	,#{map.gender}
+		    	,#{map.jobNumber}
+		    	,#{map.positionId}
+		    	,#{map.departmentId}
+		    	,#{map.creator}
+		    	,#{map.craeteDate}
+		    	,#{map.lastModifier}
+		    	,#{map.lastModDate}
+		    	,#{map.status}
+        )
+    </insert>
+    
+    <!-- 更新 -->
+    <update id="update" parameterType="cn.gdpu.his.domain.user.User">
+        UPDATE eam_user
+        <trim prefix="SET" suffixOverrides=",">
+		    username=#{username},
+		    password=#{password},
+		    name=#{name},
+		    phone=#{phone},
+		    lineTel=#{lineTel},
+		    age=#{age},
+		    gender=#{gender},
+		    jobNumber=#{jobNumber},
+		    positionId=#{positionId},
+		    departmentId=#{departmentId},
+		    creator=#{creator},
+		    craeteDate=#{craeteDate},
+		    lastModifier=#{lastModifier},
+		    lastModDate=#{lastModDate},
+		    status=#{status},
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+	
+	<update id="updateMap">
+        UPDATE eam_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.username!=null">
+                username = #{map.username},
+            </if>
+            <if test="map.password!=null">
+                password = #{map.password},
+            </if>
+            <if test="map.name!=null">
+                name = #{map.name},
+            </if>
+            <if test="map.phone!=null">
+                phone = #{map.phone},
+            </if>
+            <if test="map.lineTel!=null">
+                lineTel = #{map.lineTel},
+            </if>
+            <if test="map.age!=null">
+                age = #{map.age},
+            </if>
+            <if test="map.gender!=null">
+                gender = #{map.gender},
+            </if>
+            <if test="map.jobNumber!=null">
+                jobNumber = #{map.jobNumber},
+            </if>
+            <if test="map.positionId!=null">
+                positionId = #{map.positionId},
+            </if>
+            <if test="map.departmentId!=null">
+                departmentId = #{map.departmentId},
+            </if>
+            <if test="map.creator!=null">
+                creator = #{map.creator},
+            </if>
+            <if test="map.craeteDate!=null">
+                craeteDate = #{map.craeteDate},
+            </if>
+            <if test="map.lastModifier!=null">
+                lastModifier = #{map.lastModifier},
+            </if>
+            <if test="map.lastModDate!=null">
+                lastModDate = #{map.lastModDate},
+            </if>
+            <if test="map.status!=null">
+                status = #{map.status},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE eam_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.username!=null">
+                username = #{update.username},
+            </if>
+            <if test="update.password!=null">
+                password = #{update.password},
+            </if>
+            <if test="update.name!=null">
+                name = #{update.name},
+            </if>
+            <if test="update.phone!=null">
+                phone = #{update.phone},
+            </if>
+            <if test="update.lineTel!=null">
+                lineTel = #{update.lineTel},
+            </if>
+            <if test="update.age!=null">
+                age = #{update.age},
+            </if>
+            <if test="update.gender!=null">
+                gender = #{update.gender},
+            </if>
+            <if test="update.jobNumber!=null">
+                jobNumber = #{update.jobNumber},
+            </if>
+            <if test="update.positionId!=null">
+                positionId = #{update.positionId},
+            </if>
+            <if test="update.departmentId!=null">
+                departmentId = #{update.departmentId},
+            </if>
+            <if test="update.creator!=null">
+                creator = #{update.creator},
+            </if>
+            <if test="update.craeteDate!=null">
+                craeteDate = #{update.craeteDate},
+            </if>
+            <if test="update.lastModifier!=null">
+                lastModifier = #{update.lastModifier},
+            </if>
+            <if test="update.lastModDate!=null">
+                lastModDate = #{update.lastModDate},
+            </if>
+            <if test="update.status!=null">
+                status = #{update.status},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.username!=null">
+                AND username = #{condition.username}
+            </if>
+            <if test="condition.password!=null">
+                AND password = #{condition.password}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.phone!=null">
+                AND phone = #{condition.phone}
+            </if>
+            <if test="condition.lineTel!=null">
+                AND lineTel = #{condition.lineTel}
+            </if>
+            <if test="condition.age!=null">
+                AND age = #{condition.age}
+            </if>
+            <if test="condition.gender!=null">
+                AND gender = #{condition.gender}
+            </if>
+            <if test="condition.jobNumber!=null">
+                AND jobNumber = #{condition.jobNumber}
+            </if>
+            <if test="condition.positionId!=null">
+                AND positionId = #{condition.positionId}
+            </if>
+            <if test="condition.departmentId!=null">
+                AND departmentId = #{condition.departmentId}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.craeteDate!=null">
+                AND craeteDate = #{condition.craeteDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+        </trim>
+    </update>
+
+    <update id="updateNull" parameterType="cn.gdpu.his.domain.user.User">
+        UPDATE eam_user
+        <trim prefix="SET" suffixOverrides=",">
+            username = #{username},
+            password = #{password},
+            name = #{name},
+            phone = #{phone},
+            lineTel = #{lineTel},
+            age = #{age},
+            gender = #{gender},
+            jobNumber = #{jobNumber},
+            positionId = #{positionId},
+            departmentId = #{departmentId},
+            creator = #{creator},
+            craeteDate = #{craeteDate},
+            lastModifier = #{lastModifier},
+            lastModDate = #{lastModDate},
+            status = #{status},
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+    
+    
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM eam_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+    <!--根据list(ids)删除对象-->
+    <delete id="deleteByIds">
+        DELETE FROM eam_user
+        WHERE id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM eam_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="username!=null">
+                AND username = #{username}
+            </if>
+            <if test="password!=null">
+                AND password = #{password}
+            </if>
+            <if test="name!=null">
+                AND name = #{name}
+            </if>
+            <if test="phone!=null">
+                AND phone = #{phone}
+            </if>
+            <if test="lineTel!=null">
+                AND lineTel = #{lineTel}
+            </if>
+            <if test="age!=null">
+                AND age = #{age}
+            </if>
+            <if test="gender!=null">
+                AND gender = #{gender}
+            </if>
+            <if test="jobNumber!=null">
+                AND jobNumber = #{jobNumber}
+            </if>
+            <if test="positionId!=null">
+                AND positionId = #{positionId}
+            </if>
+            <if test="departmentId!=null">
+                AND departmentId = #{departmentId}
+            </if>
+            <if test="creator!=null">
+                AND creator = #{creator}
+            </if>
+            <if test="craeteDate!=null">
+                AND craeteDate = #{craeteDate}
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier = #{lastModifier}
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate = #{lastModDate}
+            </if>
+            <if test="status!=null">
+                AND status = #{status}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM eam_user WHERE
+        ${property} = #{value}
+    </delete>
+    
+    <!--查询相关 -->
+    <select id="fetch" parameterType="java.lang.Integer" resultType="cn.gdpu.his.domain.user.User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.user.User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_user WHERE
+        ${property} = #{value}
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.user.User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_user WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_user
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="cn.gdpu.his.domain.user.User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_user
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.username!=null">
+                ${condition.groupOp}   username  ${condition.username.op}  #{condition.username.data}
+            </if>
+            <if test="condition.password!=null">
+                ${condition.groupOp}   password  ${condition.password.op}  #{condition.password.data}
+            </if>
+            <if test="condition.name!=null">
+                ${condition.groupOp}   name  ${condition.name.op}  #{condition.name.data}
+            </if>
+            <if test="condition.phone!=null">
+                ${condition.groupOp}   phone  ${condition.phone.op}  #{condition.phone.data}
+            </if>
+            <if test="condition.lineTel!=null">
+                ${condition.groupOp}   lineTel  ${condition.lineTel.op}  #{condition.lineTel.data}
+            </if>
+            <if test="condition.age!=null">
+                ${condition.groupOp}   age  ${condition.age.op}  #{condition.age.data}
+            </if>
+            <if test="condition.gender!=null">
+                ${condition.groupOp}   gender  ${condition.gender.op}  #{condition.gender.data}
+            </if>
+            <if test="condition.jobNumber!=null">
+                ${condition.groupOp}   jobNumber  ${condition.jobNumber.op}  #{condition.jobNumber.data}
+            </if>
+            <if test="condition.positionId!=null">
+                ${condition.groupOp}   positionId  ${condition.positionId.op}  #{condition.positionId.data}
+            </if>
+            <if test="condition.departmentId!=null">
+                ${condition.groupOp}   departmentId  ${condition.departmentId.op}  #{condition.departmentId.data}
+            </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   creator  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.craeteDate!=null">
+                ${condition.groupOp}   craeteDate  ${condition.craeteDate.op}  #{condition.craeteDate.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   lastModifier  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp}   lastModDate  ${condition.lastModDate.op}  #{condition.lastModDate.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp}   status  ${condition.status.op}  #{condition.status.data}
+            </if>
+
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.user.User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id like CONCAT('%', #{id} , '%')
+            </if>
+            <if test="username!=null">
+                AND username like CONCAT('%', #{username} , '%')
+            </if>
+            <if test="password!=null">
+                AND password like CONCAT('%', #{password} , '%')
+            </if>
+            <if test="name!=null">
+                AND name like CONCAT('%', #{name} , '%')
+            </if>
+            <if test="phone!=null">
+                AND phone like CONCAT('%', #{phone} , '%')
+            </if>
+            <if test="lineTel!=null">
+                AND lineTel like CONCAT('%', #{lineTel} , '%')
+            </if>
+            <if test="age!=null">
+                AND age like CONCAT('%', #{age} , '%')
+            </if>
+            <if test="gender!=null">
+                AND gender like CONCAT('%', #{gender} , '%')
+            </if>
+            <if test="jobNumber!=null">
+                AND jobNumber like CONCAT('%', #{jobNumber} , '%')
+            </if>
+            <if test="positionId!=null">
+                AND positionId like CONCAT('%', #{positionId} , '%')
+            </if>
+            <if test="departmentId!=null">
+                AND departmentId like CONCAT('%', #{departmentId} , '%')
+            </if>
+            <if test="creator!=null">
+                AND creator like CONCAT('%', #{creator} , '%')
+            </if>
+            <if test="craeteDate!=null">
+                AND craeteDate like CONCAT('%', #{craeteDate} , '%')
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier like CONCAT('%', #{lastModifier} , '%')
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate like CONCAT('%', #{lastModDate} , '%')
+            </if>
+            <if test="status!=null">
+                AND status like CONCAT('%', #{status} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.user.User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.username!=null">
+                AND username = #{condition.username}
+            </if>
+            <if test="condition.password!=null">
+                AND password = #{condition.password}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.phone!=null">
+                AND phone = #{condition.phone}
+            </if>
+            <if test="condition.lineTel!=null">
+                AND lineTel = #{condition.lineTel}
+            </if>
+            <if test="condition.age!=null">
+                AND age = #{condition.age}
+            </if>
+            <if test="condition.gender!=null">
+                AND gender = #{condition.gender}
+            </if>
+            <if test="condition.jobNumber!=null">
+                AND jobNumber = #{condition.jobNumber}
+            </if>
+            <if test="condition.positionId!=null">
+                AND positionId = #{condition.positionId}
+            </if>
+            <if test="condition.departmentId!=null">
+                AND departmentId = #{condition.departmentId}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.craeteDate!=null">
+                AND craeteDate = #{condition.craeteDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.user.User">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.username!=null">
+                AND username = #{condition.username}
+            </if>
+            <if test="condition.password!=null">
+                AND password = #{condition.password}
+            </if>
+            <if test="condition.name!=null">
+                AND name = #{condition.name}
+            </if>
+            <if test="condition.phone!=null">
+                AND phone = #{condition.phone}
+            </if>
+            <if test="condition.lineTel!=null">
+                AND lineTel = #{condition.lineTel}
+            </if>
+            <if test="condition.age!=null">
+                AND age = #{condition.age}
+            </if>
+            <if test="condition.gender!=null">
+                AND gender = #{condition.gender}
+            </if>
+            <if test="condition.jobNumber!=null">
+                AND jobNumber = #{condition.jobNumber}
+            </if>
+            <if test="condition.positionId!=null">
+                AND positionId = #{condition.positionId}
+            </if>
+            <if test="condition.departmentId!=null">
+                AND departmentId = #{condition.departmentId}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.craeteDate!=null">
+                AND craeteDate = #{condition.craeteDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+        </trim>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(1) FROM eam_user
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="username!=null">
+               ${groupOp} username ${username.op}  #{username.data}
+           </if>
+           <if test="password!=null">
+               ${groupOp} password ${password.op}  #{password.data}
+           </if>
+           <if test="name!=null">
+               ${groupOp} name ${name.op}  #{name.data}
+           </if>
+           <if test="phone!=null">
+               ${groupOp} phone ${phone.op}  #{phone.data}
+           </if>
+           <if test="lineTel!=null">
+               ${groupOp} lineTel ${lineTel.op}  #{lineTel.data}
+           </if>
+           <if test="age!=null">
+               ${groupOp} age ${age.op}  #{age.data}
+           </if>
+           <if test="gender!=null">
+               ${groupOp} gender ${gender.op}  #{gender.data}
+           </if>
+           <if test="jobNumber!=null">
+               ${groupOp} jobNumber ${jobNumber.op}  #{jobNumber.data}
+           </if>
+           <if test="positionId!=null">
+               ${groupOp} positionId ${positionId.op}  #{positionId.data}
+           </if>
+           <if test="departmentId!=null">
+               ${groupOp} departmentId ${departmentId.op}  #{departmentId.data}
+           </if>
+           <if test="creator!=null">
+               ${groupOp} creator ${creator.op}  #{creator.data}
+           </if>
+           <if test="craeteDate!=null">
+               ${groupOp} craeteDate ${craeteDate.op}  #{craeteDate.data}
+           </if>
+           <if test="lastModifier!=null">
+               ${groupOp} lastModifier ${lastModifier.op}  #{lastModifier.data}
+           </if>
+           <if test="lastModDate!=null">
+               ${groupOp} lastModDate ${lastModDate.op}  #{lastModDate.data}
+           </if>
+           <if test="status!=null">
+               ${groupOp} status ${status.op}  #{status.data}
+           </if>
+
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Integer">
+        SELECT
+        MAX(id)
+        FROM eam_user
+    </select>
+   
+</mapper>

@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gdpu.his.dao.plan.IPlandetailDAO">
+
+    <sql id="Base_Column_List">
+        id,
+        equipment,
+        planId,
+        count,
+        price,
+        supplierCode,
+        byStages,
+        byStagesNum
+    </sql>
+    <insert id="insert" parameterType="cn.gdpu.his.domain.plan.Plandetail">
+        INSERT INTO eam_plan_plandetail (
+		    equipment
+		    ,planId
+		    ,count
+		    ,price
+		    ,supplierCode
+		    ,byStages
+		    ,byStagesNum
+        ) VALUES (
+		    	#{equipment}
+		    	,#{planId}
+		    	,#{count}
+		    	,#{price}
+		    	,#{supplierCode}
+		    	,#{byStages}
+		    	,#{byStagesNum}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+        	SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <insert id="insertMap" >
+        INSERT INTO eam_plan_plandetail (
+		    equipment
+		    ,planId
+		    ,count
+		    ,price
+		    ,supplierCode
+		    ,byStages
+		    ,byStagesNum
+        ) VALUES (
+		    	#{map.equipment}
+		    	,#{map.planId}
+		    	,#{map.count}
+		    	,#{map.price}
+		    	,#{map.supplierCode}
+		    	,#{map.byStages}
+		    	,#{map.byStagesNum}
+        )
+    </insert>
+    
+    <!-- 更新 -->
+    <update id="update" parameterType="cn.gdpu.his.domain.plan.Plandetail">
+        UPDATE eam_plan_plandetail
+        <trim prefix="SET" suffixOverrides=",">
+		    equipment=#{equipment},
+		    planId=#{planId},
+		    count=#{count},
+		    price=#{price},
+		    supplierCode=#{supplierCode},
+		    byStages=#{byStages},
+		    byStagesNum=#{byStagesNum},
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+	
+	<update id="updateMap">
+        UPDATE eam_plan_plandetail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.equipment!=null">
+                equipment = #{map.equipment},
+            </if>
+            <if test="map.planId!=null">
+                planId = #{map.planId},
+            </if>
+            <if test="map.count!=null">
+                count = #{map.count},
+            </if>
+            <if test="map.price!=null">
+                price = #{map.price},
+            </if>
+            <if test="map.supplierCode!=null">
+                supplierCode = #{map.supplierCode},
+            </if>
+            <if test="map.byStages!=null">
+                byStages = #{map.byStages},
+            </if>
+            <if test="map.byStagesNum!=null">
+                byStagesNum = #{map.byStagesNum},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE eam_plan_plandetail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.equipment!=null">
+                equipment = #{update.equipment},
+            </if>
+            <if test="update.planId!=null">
+                planId = #{update.planId},
+            </if>
+            <if test="update.count!=null">
+                count = #{update.count},
+            </if>
+            <if test="update.price!=null">
+                price = #{update.price},
+            </if>
+            <if test="update.supplierCode!=null">
+                supplierCode = #{update.supplierCode},
+            </if>
+            <if test="update.byStages!=null">
+                byStages = #{update.byStages},
+            </if>
+            <if test="update.byStagesNum!=null">
+                byStagesNum = #{update.byStagesNum},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.equipment!=null">
+                AND equipment = #{condition.equipment}
+            </if>
+            <if test="condition.planId!=null">
+                AND planId = #{condition.planId}
+            </if>
+            <if test="condition.count!=null">
+                AND count = #{condition.count}
+            </if>
+            <if test="condition.price!=null">
+                AND price = #{condition.price}
+            </if>
+            <if test="condition.supplierCode!=null">
+                AND supplierCode = #{condition.supplierCode}
+            </if>
+            <if test="condition.byStages!=null">
+                AND byStages = #{condition.byStages}
+            </if>
+            <if test="condition.byStagesNum!=null">
+                AND byStagesNum = #{condition.byStagesNum}
+            </if>
+        </trim>
+    </update>
+
+    <update id="updateNull" parameterType="cn.gdpu.his.domain.plan.Plandetail">
+        UPDATE eam_plan_plandetail
+        <trim prefix="SET" suffixOverrides=",">
+            equipment = #{equipment},
+            planId = #{planId},
+            count = #{count},
+            price = #{price},
+            supplierCode = #{supplierCode},
+            byStages = #{byStages},
+            byStagesNum = #{byStagesNum},
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+    
+    
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM eam_plan_plandetail
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+    <!--根据list(ids)删除对象-->
+    <delete id="deleteByIds">
+        DELETE FROM eam_plan_plandetail
+        WHERE id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM eam_plan_plandetail
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="equipment!=null">
+                AND equipment = #{equipment}
+            </if>
+            <if test="planId!=null">
+                AND planId = #{planId}
+            </if>
+            <if test="count!=null">
+                AND count = #{count}
+            </if>
+            <if test="price!=null">
+                AND price = #{price}
+            </if>
+            <if test="supplierCode!=null">
+                AND supplierCode = #{supplierCode}
+            </if>
+            <if test="byStages!=null">
+                AND byStages = #{byStages}
+            </if>
+            <if test="byStagesNum!=null">
+                AND byStagesNum = #{byStagesNum}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM eam_plan_plandetail WHERE
+        ${property} = #{value}
+    </delete>
+    
+    <!--查询相关 -->
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.gdpu.his.domain.plan.Plandetail">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_plan_plandetail
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.plan.Plandetail">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_plan_plandetail WHERE
+        ${property} = #{value}
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.plan.Plandetail">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_plan_plandetail WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="Plandetail">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_plan_plandetail
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="cn.gdpu.his.domain.plan.Plandetail">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_plan_plandetail
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.equipment!=null">
+                ${condition.groupOp}   equipment  ${condition.equipment.op}  #{condition.equipment.data}
+            </if>
+            <if test="condition.planId!=null">
+                ${condition.groupOp}   planId  ${condition.planId.op}  #{condition.planId.data}
+            </if>
+            <if test="condition.count!=null">
+                ${condition.groupOp}   count  ${condition.count.op}  #{condition.count.data}
+            </if>
+            <if test="condition.price!=null">
+                ${condition.groupOp}   price  ${condition.price.op}  #{condition.price.data}
+            </if>
+            <if test="condition.supplierCode!=null">
+                ${condition.groupOp}   supplierCode  ${condition.supplierCode.op}  #{condition.supplierCode.data}
+            </if>
+            <if test="condition.byStages!=null">
+                ${condition.groupOp}   byStages  ${condition.byStages.op}  #{condition.byStages.data}
+            </if>
+            <if test="condition.byStagesNum!=null">
+                ${condition.groupOp}   byStagesNum  ${condition.byStagesNum.op}  #{condition.byStagesNum.data}
+            </if>
+
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.plan.Plandetail">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_plan_plandetail
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id like CONCAT('%', #{id} , '%')
+            </if>
+            <if test="equipment!=null">
+                AND equipment like CONCAT('%', #{equipment} , '%')
+            </if>
+            <if test="planId!=null">
+                AND planId like CONCAT('%', #{planId} , '%')
+            </if>
+            <if test="count!=null">
+                AND count like CONCAT('%', #{count} , '%')
+            </if>
+            <if test="price!=null">
+                AND price like CONCAT('%', #{price} , '%')
+            </if>
+            <if test="supplierCode!=null">
+                AND supplierCode like CONCAT('%', #{supplierCode} , '%')
+            </if>
+            <if test="byStages!=null">
+                AND byStages like CONCAT('%', #{byStages} , '%')
+            </if>
+            <if test="byStagesNum!=null">
+                AND byStagesNum like CONCAT('%', #{byStagesNum} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.plan.Plandetail">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_plan_plandetail
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.equipment!=null">
+                AND equipment = #{condition.equipment}
+            </if>
+            <if test="condition.planId!=null">
+                AND planId = #{condition.planId}
+            </if>
+            <if test="condition.count!=null">
+                AND count = #{condition.count}
+            </if>
+            <if test="condition.price!=null">
+                AND price = #{condition.price}
+            </if>
+            <if test="condition.supplierCode!=null">
+                AND supplierCode = #{condition.supplierCode}
+            </if>
+            <if test="condition.byStages!=null">
+                AND byStages = #{condition.byStages}
+            </if>
+            <if test="condition.byStagesNum!=null">
+                AND byStagesNum = #{condition.byStagesNum}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.plan.Plandetail">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_plan_plandetail
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.equipment!=null">
+                AND equipment = #{condition.equipment}
+            </if>
+            <if test="condition.planId!=null">
+                AND planId = #{condition.planId}
+            </if>
+            <if test="condition.count!=null">
+                AND count = #{condition.count}
+            </if>
+            <if test="condition.price!=null">
+                AND price = #{condition.price}
+            </if>
+            <if test="condition.supplierCode!=null">
+                AND supplierCode = #{condition.supplierCode}
+            </if>
+            <if test="condition.byStages!=null">
+                AND byStages = #{condition.byStages}
+            </if>
+            <if test="condition.byStagesNum!=null">
+                AND byStagesNum = #{condition.byStagesNum}
+            </if>
+        </trim>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(1) FROM eam_plan_plandetail
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="equipment!=null">
+               ${groupOp} equipment ${equipment.op}  #{equipment.data}
+           </if>
+           <if test="planId!=null">
+               ${groupOp} planId ${planId.op}  #{planId.data}
+           </if>
+           <if test="count!=null">
+               ${groupOp} count ${count.op}  #{count.data}
+           </if>
+           <if test="price!=null">
+               ${groupOp} price ${price.op}  #{price.data}
+           </if>
+           <if test="supplierCode!=null">
+               ${groupOp} supplierCode ${supplierCode.op}  #{supplierCode.data}
+           </if>
+           <if test="byStages!=null">
+               ${groupOp} byStages ${byStages.op}  #{byStages.data}
+           </if>
+           <if test="byStagesNum!=null">
+               ${groupOp} byStagesNum ${byStagesNum.op}  #{byStagesNum.data}
+           </if>
+
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Long">
+        SELECT
+        MAX(id)
+        FROM eam_plan_plandetail
+    </select>
+   
+</mapper>

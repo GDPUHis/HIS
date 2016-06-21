@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.gdpu.his.dao.storage.IInventorylossDAO">
+
+    <sql id="Base_Column_List">
+        id,
+        equipmentId,
+        accessoryId,
+        oStatus,
+        noter,
+        noteDate,
+        creator,
+        createDate,
+        lastModifier,
+        lastModDate,
+        status
+    </sql>
+    <insert id="insert" parameterType="cn.gdpu.his.domain.storage.Inventoryloss">
+        INSERT INTO eam_storage_inventoryloss (
+		    equipmentId
+		    ,accessoryId
+		    ,oStatus
+		    ,noter
+		    ,noteDate
+		    ,creator
+		    ,createDate
+		    ,lastModifier
+		    ,lastModDate
+		    ,status
+        ) VALUES (
+		    	#{equipmentId}
+		    	,#{accessoryId}
+		    	,#{oStatus}
+		    	,#{noter}
+		    	,#{noteDate}
+		    	,#{creator}
+		    	,#{createDate}
+		    	,#{lastModifier}
+		    	,#{lastModDate}
+		    	,#{status}
+        )
+        <selectKey resultType="java.lang.Long" keyProperty="id">
+        	SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <insert id="insertMap" >
+        INSERT INTO eam_storage_inventoryloss (
+		    equipmentId
+		    ,accessoryId
+		    ,oStatus
+		    ,noter
+		    ,noteDate
+		    ,creator
+		    ,createDate
+		    ,lastModifier
+		    ,lastModDate
+		    ,status
+        ) VALUES (
+		    	#{map.equipmentId}
+		    	,#{map.accessoryId}
+		    	,#{map.oStatus}
+		    	,#{map.noter}
+		    	,#{map.noteDate}
+		    	,#{map.creator}
+		    	,#{map.createDate}
+		    	,#{map.lastModifier}
+		    	,#{map.lastModDate}
+		    	,#{map.status}
+        )
+    </insert>
+    
+    <!-- 更新 -->
+    <update id="update" parameterType="cn.gdpu.his.domain.storage.Inventoryloss">
+        UPDATE eam_storage_inventoryloss
+        <trim prefix="SET" suffixOverrides=",">
+		    equipmentId=#{equipmentId},
+		    accessoryId=#{accessoryId},
+		    oStatus=#{oStatus},
+		    noter=#{noter},
+		    noteDate=#{noteDate},
+		    creator=#{creator},
+		    createDate=#{createDate},
+		    lastModifier=#{lastModifier},
+		    lastModDate=#{lastModDate},
+		    status=#{status},
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+	
+	<update id="updateMap">
+        UPDATE eam_storage_inventoryloss
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="map.equipmentId!=null">
+                equipmentId = #{map.equipmentId},
+            </if>
+            <if test="map.accessoryId!=null">
+                accessoryId = #{map.accessoryId},
+            </if>
+            <if test="map.oStatus!=null">
+                oStatus = #{map.oStatus},
+            </if>
+            <if test="map.noter!=null">
+                noter = #{map.noter},
+            </if>
+            <if test="map.noteDate!=null">
+                noteDate = #{map.noteDate},
+            </if>
+            <if test="map.creator!=null">
+                creator = #{map.creator},
+            </if>
+            <if test="map.createDate!=null">
+                createDate = #{map.createDate},
+            </if>
+            <if test="map.lastModifier!=null">
+                lastModifier = #{map.lastModifier},
+            </if>
+            <if test="map.lastModDate!=null">
+                lastModDate = #{map.lastModDate},
+            </if>
+            <if test="map.status!=null">
+                status = #{map.status},
+            </if>
+        </trim>
+        WHERE
+        id = #{map.id}
+    </update>
+
+    <update id="updateByCondition">
+        UPDATE eam_storage_inventoryloss
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="update.equipmentId!=null">
+                equipmentId = #{update.equipmentId},
+            </if>
+            <if test="update.accessoryId!=null">
+                accessoryId = #{update.accessoryId},
+            </if>
+            <if test="update.oStatus!=null">
+                oStatus = #{update.oStatus},
+            </if>
+            <if test="update.noter!=null">
+                noter = #{update.noter},
+            </if>
+            <if test="update.noteDate!=null">
+                noteDate = #{update.noteDate},
+            </if>
+            <if test="update.creator!=null">
+                creator = #{update.creator},
+            </if>
+            <if test="update.createDate!=null">
+                createDate = #{update.createDate},
+            </if>
+            <if test="update.lastModifier!=null">
+                lastModifier = #{update.lastModifier},
+            </if>
+            <if test="update.lastModDate!=null">
+                lastModDate = #{update.lastModDate},
+            </if>
+            <if test="update.status!=null">
+                status = #{update.status},
+            </if>
+        </trim>
+
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.equipmentId!=null">
+                AND equipmentId = #{condition.equipmentId}
+            </if>
+            <if test="condition.accessoryId!=null">
+                AND accessoryId = #{condition.accessoryId}
+            </if>
+            <if test="condition.oStatus!=null">
+                AND oStatus = #{condition.oStatus}
+            </if>
+            <if test="condition.noter!=null">
+                AND noter = #{condition.noter}
+            </if>
+            <if test="condition.noteDate!=null">
+                AND noteDate = #{condition.noteDate}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+        </trim>
+    </update>
+
+    <update id="updateNull" parameterType="cn.gdpu.his.domain.storage.Inventoryloss">
+        UPDATE eam_storage_inventoryloss
+        <trim prefix="SET" suffixOverrides=",">
+            equipmentId = #{equipmentId},
+            accessoryId = #{accessoryId},
+            oStatus = #{oStatus},
+            noter = #{noter},
+            noteDate = #{noteDate},
+            creator = #{creator},
+            createDate = #{createDate},
+            lastModifier = #{lastModifier},
+            lastModDate = #{lastModDate},
+            status = #{status},
+        </trim>
+        WHERE
+        id = #{id}
+    </update>
+    
+    
+    <!-- 按Id删除 -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM eam_storage_inventoryloss
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </delete>
+
+    <!--根据list(ids)删除对象-->
+    <delete id="deleteByIds">
+        DELETE FROM eam_storage_inventoryloss
+        WHERE id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">#{id}</foreach>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        DELETE FROM eam_storage_inventoryloss
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id = #{id}
+            </if>
+            <if test="equipmentId!=null">
+                AND equipmentId = #{equipmentId}
+            </if>
+            <if test="accessoryId!=null">
+                AND accessoryId = #{accessoryId}
+            </if>
+            <if test="oStatus!=null">
+                AND oStatus = #{oStatus}
+            </if>
+            <if test="noter!=null">
+                AND noter = #{noter}
+            </if>
+            <if test="noteDate!=null">
+                AND noteDate = #{noteDate}
+            </if>
+            <if test="creator!=null">
+                AND creator = #{creator}
+            </if>
+            <if test="createDate!=null">
+                AND createDate = #{createDate}
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier = #{lastModifier}
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate = #{lastModDate}
+            </if>
+            <if test="status!=null">
+                AND status = #{status}
+            </if>
+        </trim>
+    </delete>
+
+    <delete id="deleteByProperty" parameterType="java.util.Map">
+        DELETE FROM eam_storage_inventoryloss WHERE
+        ${property} = #{value}
+    </delete>
+    
+    <!--查询相关 -->
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.gdpu.his.domain.storage.Inventoryloss">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_storage_inventoryloss
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            AND id = #{id}
+        </trim>
+    </select>
+
+    <select id="findOne" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.storage.Inventoryloss">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_storage_inventoryloss WHERE
+        ${property} = #{value}
+        LIMIT 0,1
+    </select>
+
+    <select id="findList" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.storage.Inventoryloss">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_storage_inventoryloss WHERE
+        ${property} = #{value}
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="findAll" resultType="Inventoryloss">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_storage_inventoryloss
+        <if test="orderBy!=null">
+            ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryPage" resultType="cn.gdpu.his.domain.storage.Inventoryloss">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_storage_inventoryloss
+        <where>
+
+            <if test="condition.whereSql != null">
+                and id in (#{condition.whereSql})
+            </if>
+
+            <if test="condition.id!=null">
+                ${condition.groupOp}   id  ${condition.id.op}  #{condition.id.data}
+            </if>
+            <if test="condition.equipmentId!=null">
+                ${condition.groupOp}   equipmentId  ${condition.equipmentId.op}  #{condition.equipmentId.data}
+            </if>
+            <if test="condition.accessoryId!=null">
+                ${condition.groupOp}   accessoryId  ${condition.accessoryId.op}  #{condition.accessoryId.data}
+            </if>
+            <if test="condition.oStatus!=null">
+                ${condition.groupOp}   oStatus  ${condition.oStatus.op}  #{condition.oStatus.data}
+            </if>
+            <if test="condition.noter!=null">
+                ${condition.groupOp}   noter  ${condition.noter.op}  #{condition.noter.data}
+            </if>
+            <if test="condition.noteDate!=null">
+                ${condition.groupOp}   noteDate  ${condition.noteDate.op}  #{condition.noteDate.data}
+            </if>
+            <if test="condition.creator!=null">
+                ${condition.groupOp}   creator  ${condition.creator.op}  #{condition.creator.data}
+            </if>
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   createDate  ${condition.createDate.op}  #{condition.createDate.data}
+            </if>
+            <if test="condition.lastModifier!=null">
+                ${condition.groupOp}   lastModifier  ${condition.lastModifier.op}  #{condition.lastModifier.data}
+            </if>
+            <if test="condition.lastModDate!=null">
+                ${condition.groupOp}   lastModDate  ${condition.lastModDate.op}  #{condition.lastModDate.data}
+            </if>
+            <if test="condition.status!=null">
+                ${condition.groupOp}   status  ${condition.status.op}  #{condition.status.data}
+            </if>
+
+
+    </where>
+
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+        <if test="offset != null">
+            limit ${offset}, ${rows}
+        </if>
+    </select>
+
+    <select id="like" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.storage.Inventoryloss">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_storage_inventoryloss
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="id!=null">
+                AND id like CONCAT('%', #{id} , '%')
+            </if>
+            <if test="equipmentId!=null">
+                AND equipmentId like CONCAT('%', #{equipmentId} , '%')
+            </if>
+            <if test="accessoryId!=null">
+                AND accessoryId like CONCAT('%', #{accessoryId} , '%')
+            </if>
+            <if test="oStatus!=null">
+                AND oStatus like CONCAT('%', #{oStatus} , '%')
+            </if>
+            <if test="noter!=null">
+                AND noter like CONCAT('%', #{noter} , '%')
+            </if>
+            <if test="noteDate!=null">
+                AND noteDate like CONCAT('%', #{noteDate} , '%')
+            </if>
+            <if test="creator!=null">
+                AND creator like CONCAT('%', #{creator} , '%')
+            </if>
+            <if test="createDate!=null">
+                AND createDate like CONCAT('%', #{createDate} , '%')
+            </if>
+            <if test="lastModifier!=null">
+                AND lastModifier like CONCAT('%', #{lastModifier} , '%')
+            </if>
+            <if test="lastModDate!=null">
+                AND lastModDate like CONCAT('%', #{lastModDate} , '%')
+            </if>
+            <if test="status!=null">
+                AND status like CONCAT('%', #{status} , '%')
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.storage.Inventoryloss">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_storage_inventoryloss
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.equipmentId!=null">
+                AND equipmentId = #{condition.equipmentId}
+            </if>
+            <if test="condition.accessoryId!=null">
+                AND accessoryId = #{condition.accessoryId}
+            </if>
+            <if test="condition.oStatus!=null">
+                AND oStatus = #{condition.oStatus}
+            </if>
+            <if test="condition.noter!=null">
+                AND noter = #{condition.noter}
+            </if>
+            <if test="condition.noteDate!=null">
+                AND noteDate = #{condition.noteDate}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+        </trim>
+        <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+        </if>
+    </select>
+
+    <select id="queryOne" parameterType="java.util.Map" resultType="cn.gdpu.his.domain.storage.Inventoryloss">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM eam_storage_inventoryloss
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="condition.id!=null">
+                AND id = #{condition.id}
+            </if>
+            <if test="condition.equipmentId!=null">
+                AND equipmentId = #{condition.equipmentId}
+            </if>
+            <if test="condition.accessoryId!=null">
+                AND accessoryId = #{condition.accessoryId}
+            </if>
+            <if test="condition.oStatus!=null">
+                AND oStatus = #{condition.oStatus}
+            </if>
+            <if test="condition.noter!=null">
+                AND noter = #{condition.noter}
+            </if>
+            <if test="condition.noteDate!=null">
+                AND noteDate = #{condition.noteDate}
+            </if>
+            <if test="condition.creator!=null">
+                AND creator = #{condition.creator}
+            </if>
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
+            </if>
+            <if test="condition.lastModifier!=null">
+                AND lastModifier = #{condition.lastModifier}
+            </if>
+            <if test="condition.lastModDate!=null">
+                AND lastModDate = #{condition.lastModDate}
+            </if>
+            <if test="condition.status!=null">
+                AND status = #{condition.status}
+            </if>
+        </trim>
+        limit 0,1
+    </select>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(1) FROM eam_storage_inventoryloss
+       <where>
+           <if test="id!=null">
+               ${groupOp} id ${id.op}  #{id.data}
+           </if>
+           <if test="equipmentId!=null">
+               ${groupOp} equipmentId ${equipmentId.op}  #{equipmentId.data}
+           </if>
+           <if test="accessoryId!=null">
+               ${groupOp} accessoryId ${accessoryId.op}  #{accessoryId.data}
+           </if>
+           <if test="oStatus!=null">
+               ${groupOp} oStatus ${oStatus.op}  #{oStatus.data}
+           </if>
+           <if test="noter!=null">
+               ${groupOp} noter ${noter.op}  #{noter.data}
+           </if>
+           <if test="noteDate!=null">
+               ${groupOp} noteDate ${noteDate.op}  #{noteDate.data}
+           </if>
+           <if test="creator!=null">
+               ${groupOp} creator ${creator.op}  #{creator.data}
+           </if>
+           <if test="createDate!=null">
+               ${groupOp} createDate ${createDate.op}  #{createDate.data}
+           </if>
+           <if test="lastModifier!=null">
+               ${groupOp} lastModifier ${lastModifier.op}  #{lastModifier.data}
+           </if>
+           <if test="lastModDate!=null">
+               ${groupOp} lastModDate ${lastModDate.op}  #{lastModDate.data}
+           </if>
+           <if test="status!=null">
+               ${groupOp} status ${status.op}  #{status.data}
+           </if>
+
+       </where>
+    <if test="orderBy!=null">
+        ORDER BY ${orderBy} ${sortBy}
+    </if>
+    </select>
+
+    <select id="selectMaxId" resultType="java.lang.Long">
+        SELECT
+        MAX(id)
+        FROM eam_storage_inventoryloss
+    </select>
+   
+</mapper>
