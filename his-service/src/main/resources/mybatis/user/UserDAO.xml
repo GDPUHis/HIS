@@ -15,8 +15,9 @@
         jobNumber,
         positionId,
         departmentId,
+        code,
         creator,
-        craeteDate,
+        createDate,
         lastModifier,
         lastModDate,
         status
@@ -33,8 +34,9 @@
 		    ,jobNumber
 		    ,positionId
 		    ,departmentId
+		    ,code
 		    ,creator
-		    ,craeteDate
+		    ,createDate
 		    ,lastModifier
 		    ,lastModDate
 		    ,status
@@ -49,8 +51,9 @@
 		    	,#{jobNumber}
 		    	,#{positionId}
 		    	,#{departmentId}
+		    	,#{code}
 		    	,#{creator}
-		    	,#{craeteDate}
+		    	,#{createDate}
 		    	,#{lastModifier}
 		    	,#{lastModDate}
 		    	,#{status}
@@ -72,8 +75,9 @@
 		    ,jobNumber
 		    ,positionId
 		    ,departmentId
+		    ,code
 		    ,creator
-		    ,craeteDate
+		    ,createDate
 		    ,lastModifier
 		    ,lastModDate
 		    ,status
@@ -88,8 +92,9 @@
 		    	,#{map.jobNumber}
 		    	,#{map.positionId}
 		    	,#{map.departmentId}
+		    	,#{map.code}
 		    	,#{map.creator}
-		    	,#{map.craeteDate}
+		    	,#{map.createDate}
 		    	,#{map.lastModifier}
 		    	,#{map.lastModDate}
 		    	,#{map.status}
@@ -110,8 +115,9 @@
 		    jobNumber=#{jobNumber},
 		    positionId=#{positionId},
 		    departmentId=#{departmentId},
+		    code=#{code},
 		    creator=#{creator},
-		    craeteDate=#{craeteDate},
+		    createDate=#{createDate},
 		    lastModifier=#{lastModifier},
 		    lastModDate=#{lastModDate},
 		    status=#{status},
@@ -153,11 +159,14 @@
             <if test="map.departmentId!=null">
                 departmentId = #{map.departmentId},
             </if>
+            <if test="map.code!=null">
+                code = #{map.code},
+            </if>
             <if test="map.creator!=null">
                 creator = #{map.creator},
             </if>
-            <if test="map.craeteDate!=null">
-                craeteDate = #{map.craeteDate},
+            <if test="map.createDate!=null">
+                createDate = #{map.createDate},
             </if>
             <if test="map.lastModifier!=null">
                 lastModifier = #{map.lastModifier},
@@ -206,11 +215,14 @@
             <if test="update.departmentId!=null">
                 departmentId = #{update.departmentId},
             </if>
+            <if test="update.code!=null">
+                code = #{update.code},
+            </if>
             <if test="update.creator!=null">
                 creator = #{update.creator},
             </if>
-            <if test="update.craeteDate!=null">
-                craeteDate = #{update.craeteDate},
+            <if test="update.createDate!=null">
+                createDate = #{update.createDate},
             </if>
             <if test="update.lastModifier!=null">
                 lastModifier = #{update.lastModifier},
@@ -254,11 +266,14 @@
             <if test="condition.departmentId!=null">
                 AND departmentId = #{condition.departmentId}
             </if>
+            <if test="condition.code!=null">
+                AND code = #{condition.code}
+            </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
             </if>
-            <if test="condition.craeteDate!=null">
-                AND craeteDate = #{condition.craeteDate}
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
             </if>
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
@@ -285,8 +300,9 @@
             jobNumber = #{jobNumber},
             positionId = #{positionId},
             departmentId = #{departmentId},
+            code = #{code},
             creator = #{creator},
-            craeteDate = #{craeteDate},
+            createDate = #{createDate},
             lastModifier = #{lastModifier},
             lastModDate = #{lastModDate},
             status = #{status},
@@ -297,7 +313,7 @@
     
     
     <!-- 按Id删除 -->
-    <delete id="deleteById" parameterType="java.lang.Integer">
+    <delete id="deleteById" parameterType="java.lang.Long">
         DELETE FROM eam_user
         <trim prefix="WHERE" prefixOverrides="AND | OR">
             AND id = #{id}
@@ -347,11 +363,14 @@
             <if test="departmentId!=null">
                 AND departmentId = #{departmentId}
             </if>
+            <if test="code!=null">
+                AND code = #{code}
+            </if>
             <if test="creator!=null">
                 AND creator = #{creator}
             </if>
-            <if test="craeteDate!=null">
-                AND craeteDate = #{craeteDate}
+            <if test="createDate!=null">
+                AND createDate = #{createDate}
             </if>
             <if test="lastModifier!=null">
                 AND lastModifier = #{lastModifier}
@@ -371,7 +390,7 @@
     </delete>
     
     <!--查询相关 -->
-    <select id="fetch" parameterType="java.lang.Integer" resultType="cn.gdpu.his.domain.user.User">
+    <select id="fetch" parameterType="java.lang.Long" resultType="cn.gdpu.his.domain.user.User">
         SELECT
         <include refid="Base_Column_List" />
         FROM eam_user
@@ -450,11 +469,14 @@
             <if test="condition.departmentId!=null">
                 ${condition.groupOp}   departmentId  ${condition.departmentId.op}  #{condition.departmentId.data}
             </if>
+            <if test="condition.code!=null">
+                ${condition.groupOp}   code  ${condition.code.op}  #{condition.code.data}
+            </if>
             <if test="condition.creator!=null">
                 ${condition.groupOp}   creator  ${condition.creator.op}  #{condition.creator.data}
             </if>
-            <if test="condition.craeteDate!=null">
-                ${condition.groupOp}   craeteDate  ${condition.craeteDate.op}  #{condition.craeteDate.data}
+            <if test="condition.createDate!=null">
+                ${condition.groupOp}   createDate  ${condition.createDate.op}  #{condition.createDate.data}
             </if>
             <if test="condition.lastModifier!=null">
                 ${condition.groupOp}   lastModifier  ${condition.lastModifier.op}  #{condition.lastModifier.data}
@@ -515,11 +537,14 @@
             <if test="departmentId!=null">
                 AND departmentId like CONCAT('%', #{departmentId} , '%')
             </if>
+            <if test="code!=null">
+                AND code like CONCAT('%', #{code} , '%')
+            </if>
             <if test="creator!=null">
                 AND creator like CONCAT('%', #{creator} , '%')
             </if>
-            <if test="craeteDate!=null">
-                AND craeteDate like CONCAT('%', #{craeteDate} , '%')
+            <if test="createDate!=null">
+                AND createDate like CONCAT('%', #{createDate} , '%')
             </if>
             <if test="lastModifier!=null">
                 AND lastModifier like CONCAT('%', #{lastModifier} , '%')
@@ -575,11 +600,14 @@
             <if test="condition.departmentId!=null">
                 AND departmentId = #{condition.departmentId}
             </if>
+            <if test="condition.code!=null">
+                AND code = #{condition.code}
+            </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
             </if>
-            <if test="condition.craeteDate!=null">
-                AND craeteDate = #{condition.craeteDate}
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
             </if>
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
@@ -634,11 +662,14 @@
             <if test="condition.departmentId!=null">
                 AND departmentId = #{condition.departmentId}
             </if>
+            <if test="condition.code!=null">
+                AND code = #{condition.code}
+            </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
             </if>
-            <if test="condition.craeteDate!=null">
-                AND craeteDate = #{condition.craeteDate}
+            <if test="condition.createDate!=null">
+                AND createDate = #{condition.createDate}
             </if>
             <if test="condition.lastModifier!=null">
                 AND lastModifier = #{condition.lastModifier}
@@ -689,11 +720,14 @@
            <if test="departmentId!=null">
                ${groupOp} departmentId ${departmentId.op}  #{departmentId.data}
            </if>
+           <if test="code!=null">
+               ${groupOp} code ${code.op}  #{code.data}
+           </if>
            <if test="creator!=null">
                ${groupOp} creator ${creator.op}  #{creator.data}
            </if>
-           <if test="craeteDate!=null">
-               ${groupOp} craeteDate ${craeteDate.op}  #{craeteDate.data}
+           <if test="createDate!=null">
+               ${groupOp} createDate ${createDate.op}  #{createDate.data}
            </if>
            <if test="lastModifier!=null">
                ${groupOp} lastModifier ${lastModifier.op}  #{lastModifier.data}
@@ -711,7 +745,7 @@
     </if>
     </select>
 
-    <select id="selectMaxId" resultType="java.lang.Integer">
+    <select id="selectMaxId" resultType="java.lang.Long">
         SELECT
         MAX(id)
         FROM eam_user

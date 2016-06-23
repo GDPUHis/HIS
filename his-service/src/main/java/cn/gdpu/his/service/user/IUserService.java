@@ -21,13 +21,27 @@ package cn.gdpu.his.service.user;
 import cn.gdpu.common.domain.BaseDomain;
 import cn.gdpu.common.service.IPageService;
 import cn.gdpu.his.dao.IHISBaseDAO;
+import cn.gdpu.his.domain.user.User;
 import cn.gdpu.his.service.IHISBaseService;
 
- /**
- * 《系统用户基础信息（模拟表）》 业务逻辑服务接口
- * @author 郭旭辉
- *
- */
-public interface IUserService<D extends IHISBaseDAO<T>, T extends BaseDomain> extends IHISBaseService<D, T>,IPageService<D, T>{
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+/**
+ * 《系统用户基础信息（模拟表）》 业务逻辑服务接口
+ *
+ * @author 郭旭辉
+ */
+public interface IUserService<D extends IHISBaseDAO<T>, T extends BaseDomain> extends IHISBaseService<D, T>, IPageService<D, T> {
+
+    /**
+     * 用户登录校验
+     *
+     * @param username 用户名
+     * @param password 密码
+     * @param session  账号
+     * @param response 响应
+     * @return 返回，用户实体
+     */
+    User isLogin(String username, String password, HttpSession session, HttpServletResponse response);
 }

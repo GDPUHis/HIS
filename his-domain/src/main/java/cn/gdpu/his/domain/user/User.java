@@ -11,27 +11,25 @@
 {  维护历史:													
 {  日期        维护人        维护类型						
 {  ---------------------------------------------------------------------------	
-{  2016-06-21  郭旭辉        新建	
+{  2016-06-23  郭旭辉        新建	
 { 	                                                                     
 {*****************************************************************************
 */
 
 package cn.gdpu.his.domain.user;
 
+import cn.gdpu.common.domain.HISCreateBaseDomain;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import cn.gdpu.common.domain.HISCreateBaseDomain;
-
-import java.util.*;
 
 /**
  * 《系统用户基础信息（模拟表）》 实体
  * @author 郭旭辉
  *
  */
-public class User extends HISCreateBaseDomain<Integer> {
+public class User extends HISCreateBaseDomain<Long> {
 	private static final long serialVersionUID = 1L;
 	
 	private String username; //账号
@@ -44,7 +42,7 @@ public class User extends HISCreateBaseDomain<Integer> {
 	private String jobNumber; //工号
 	private Integer positionId; //职位
 	private Integer departmentId; //所属部门
-	private Long craeteDate; //创建时间
+	private String code; //uuid
     
 	/**
 	 *默认空构造函数
@@ -174,16 +172,16 @@ public class User extends HISCreateBaseDomain<Integer> {
 		this.departmentId = departmentId;
 	}
 	/**
-	 * @return craeteDate 创建时间
+	 * @return code uuid
 	 */
-	public Long getCraeteDate(){
-		return this.craeteDate;
+	public String getCode(){
+		return this.code;
 	}
 	/**
-	 * @param craeteDate 创建时间
+	 * @param code uuid
 	 */
-	public void setCraeteDate(Long craeteDate){
-		this.craeteDate = craeteDate;
+	public void setCode(String code){
+		this.code = code;
 	}
 	
 	public String toString() {
@@ -199,8 +197,9 @@ public class User extends HISCreateBaseDomain<Integer> {
 			.append("jobNumber",getJobNumber())
 			.append("positionId",getPositionId())
 			.append("departmentId",getDepartmentId())
+			.append("code",getCode())
 			.append("creator",getCreator())
-			.append("craeteDate",getCraeteDate())
+			.append("createDate",getCreateDate())
 			.append("lastModifier",getLastModifier())
 			.append("lastModDate",getLastModDate())
 			.append("status",getStatus())
@@ -220,8 +219,9 @@ public class User extends HISCreateBaseDomain<Integer> {
 			.append(getJobNumber())
 			.append(getPositionId())
 			.append(getDepartmentId())
+			.append(getCode())
 			.append(getCreator())
-			.append(getCraeteDate())
+			.append(getCreateDate())
 			.append(getLastModifier())
 			.append(getLastModDate())
 			.append(getStatus())

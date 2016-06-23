@@ -1,4 +1,4 @@
-package com.gdpu.his.category;
+package cn.gdpu.his.category;
 
 import cn.gdpu.his.domain.sys.Category;
 import cn.gdpu.his.service.sys.ICategoryService;

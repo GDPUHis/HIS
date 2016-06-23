@@ -11,7 +11,7 @@
 {  维护历史:													
 {  日期        维护人        维护类型						
 {  ---------------------------------------------------------------------------	
-{  2016-06-21  郭旭辉        新建	
+{  2016-06-23  郭旭辉        新建	
 { 	                                                                     
 {*****************************************************************************
 */
@@ -27,7 +27,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author 郭旭辉
  *
  */
-public class UserParam extends CreateBaseParam<Integer> {
+public class UserParam extends CreateBaseParam<Long> {
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -71,9 +71,9 @@ public class UserParam extends CreateBaseParam<Integer> {
 	*/
 	public static final String F_DepartmentId="departmentId";
 	/**
-	*字段常量——创建时间
+	*字段常量——uuid
 	*/
-	public static final String F_CraeteDate="craeteDate";
+	public static final String F_Code="code";
 	
 	private String username; //账号
 	private String password; //密码
@@ -85,7 +85,7 @@ public class UserParam extends CreateBaseParam<Integer> {
 	private String jobNumber; //工号
 	private Integer positionId; //职位
 	private Integer departmentId; //所属部门
-	private Long craeteDate; //创建时间
+	private String code; //uuid
     
 	/**
 	 *默认空构造函数
@@ -215,16 +215,16 @@ public class UserParam extends CreateBaseParam<Integer> {
 		this.departmentId = departmentId;
 	}
 	/**
-	 * @return craeteDate 创建时间
+	 * @return code uuid
 	 */
-	public Long getCraeteDate(){
-		return this.craeteDate;
+	public String getCode(){
+		return this.code;
 	}
 	/**
-	 * @param craeteDate 创建时间
+	 * @param code uuid
 	 */
-	public void setCraeteDate(Long craeteDate){
-		this.craeteDate = craeteDate;
+	public void setCode(String code){
+		this.code = code;
 	}
 	
 	public String toString() {
@@ -240,8 +240,9 @@ public class UserParam extends CreateBaseParam<Integer> {
 			.append("jobNumber",getJobNumber())
 			.append("positionId",getPositionId())
 			.append("departmentId",getDepartmentId())
+			.append("code",getCode())
 			.append("creator",getCreator())
-			.append("craeteDate",getCraeteDate())
+			.append("createDate",getCreateDate())
 			.append("lastModifier",getLastModifier())
 			.append("lastModDate",getLastModDate())
 			.append("status",getStatus())
