@@ -11,7 +11,7 @@
 {  维护历史:													
 {  日期        维护人        维护类型						
 {  ---------------------------------------------------------------------------	
-{  2016-06-23  郭旭辉        新建	
+{  2016-06-24  郭旭辉        新建	
 { 	                                                                     
 {*****************************************************************************
 */
@@ -74,6 +74,10 @@ public class UserParam extends CreateBaseParam<Long> {
 	*字段常量——uuid
 	*/
 	public static final String F_Code="code";
+	/**
+	*字段常量——用户身份，1：普通用户，2：科室负责人；4：管理员；8:超级管理员
+	*/
+	public static final String F_UserTypes="userTypes";
 	
 	private String username; //账号
 	private String password; //密码
@@ -86,6 +90,7 @@ public class UserParam extends CreateBaseParam<Long> {
 	private Integer positionId; //职位
 	private Integer departmentId; //所属部门
 	private String code; //uuid
+	private Integer userTypes; //用户身份，1：普通用户，2：科室负责人；4：管理员；8:超级管理员
     
 	/**
 	 *默认空构造函数
@@ -226,6 +231,18 @@ public class UserParam extends CreateBaseParam<Long> {
 	public void setCode(String code){
 		this.code = code;
 	}
+	/**
+	 * @return userTypes 用户身份，1：普通用户，2：科室负责人；4：管理员；8:超级管理员
+	 */
+	public Integer getUserTypes(){
+		return this.userTypes;
+	}
+	/**
+	 * @param userTypes 用户身份，1：普通用户，2：科室负责人；4：管理员；8:超级管理员
+	 */
+	public void setUserTypes(Integer userTypes){
+		this.userTypes = userTypes;
+	}
 	
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -241,6 +258,7 @@ public class UserParam extends CreateBaseParam<Long> {
 			.append("positionId",getPositionId())
 			.append("departmentId",getDepartmentId())
 			.append("code",getCode())
+			.append("userTypes",getUserTypes())
 			.append("creator",getCreator())
 			.append("createDate",getCreateDate())
 			.append("lastModifier",getLastModifier())

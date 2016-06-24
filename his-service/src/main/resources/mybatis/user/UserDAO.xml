@@ -16,6 +16,7 @@
         positionId,
         departmentId,
         code,
+        userTypes,
         creator,
         createDate,
         lastModifier,
@@ -35,6 +36,7 @@
 		    ,positionId
 		    ,departmentId
 		    ,code
+		    ,userTypes
 		    ,creator
 		    ,createDate
 		    ,lastModifier
@@ -52,6 +54,7 @@
 		    	,#{positionId}
 		    	,#{departmentId}
 		    	,#{code}
+		    	,#{userTypes}
 		    	,#{creator}
 		    	,#{createDate}
 		    	,#{lastModifier}
@@ -76,6 +79,7 @@
 		    ,positionId
 		    ,departmentId
 		    ,code
+		    ,userTypes
 		    ,creator
 		    ,createDate
 		    ,lastModifier
@@ -93,6 +97,7 @@
 		    	,#{map.positionId}
 		    	,#{map.departmentId}
 		    	,#{map.code}
+		    	,#{map.userTypes}
 		    	,#{map.creator}
 		    	,#{map.createDate}
 		    	,#{map.lastModifier}
@@ -116,6 +121,7 @@
 		    positionId=#{positionId},
 		    departmentId=#{departmentId},
 		    code=#{code},
+		    userTypes=#{userTypes},
 		    creator=#{creator},
 		    createDate=#{createDate},
 		    lastModifier=#{lastModifier},
@@ -161,6 +167,9 @@
             </if>
             <if test="map.code!=null">
                 code = #{map.code},
+            </if>
+            <if test="map.userTypes!=null">
+                userTypes = #{map.userTypes},
             </if>
             <if test="map.creator!=null">
                 creator = #{map.creator},
@@ -218,6 +227,9 @@
             <if test="update.code!=null">
                 code = #{update.code},
             </if>
+            <if test="update.userTypes!=null">
+                userTypes = #{update.userTypes},
+            </if>
             <if test="update.creator!=null">
                 creator = #{update.creator},
             </if>
@@ -269,6 +281,9 @@
             <if test="condition.code!=null">
                 AND code = #{condition.code}
             </if>
+            <if test="condition.userTypes!=null">
+                AND userTypes = #{condition.userTypes}
+            </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
             </if>
@@ -301,6 +316,7 @@
             positionId = #{positionId},
             departmentId = #{departmentId},
             code = #{code},
+            userTypes = #{userTypes},
             creator = #{creator},
             createDate = #{createDate},
             lastModifier = #{lastModifier},
@@ -365,6 +381,9 @@
             </if>
             <if test="code!=null">
                 AND code = #{code}
+            </if>
+            <if test="userTypes!=null">
+                AND userTypes = #{userTypes}
             </if>
             <if test="creator!=null">
                 AND creator = #{creator}
@@ -472,6 +491,9 @@
             <if test="condition.code!=null">
                 ${condition.groupOp}   code  ${condition.code.op}  #{condition.code.data}
             </if>
+            <if test="condition.userTypes!=null">
+                ${condition.groupOp}   userTypes  ${condition.userTypes.op}  #{condition.userTypes.data}
+            </if>
             <if test="condition.creator!=null">
                 ${condition.groupOp}   creator  ${condition.creator.op}  #{condition.creator.data}
             </if>
@@ -540,6 +562,9 @@
             <if test="code!=null">
                 AND code like CONCAT('%', #{code} , '%')
             </if>
+            <if test="userTypes!=null">
+                AND userTypes like CONCAT('%', #{userTypes} , '%')
+            </if>
             <if test="creator!=null">
                 AND creator like CONCAT('%', #{creator} , '%')
             </if>
@@ -603,6 +628,9 @@
             <if test="condition.code!=null">
                 AND code = #{condition.code}
             </if>
+            <if test="condition.userTypes!=null">
+                AND userTypes = #{condition.userTypes}
+            </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
             </if>
@@ -665,6 +693,9 @@
             <if test="condition.code!=null">
                 AND code = #{condition.code}
             </if>
+            <if test="condition.userTypes!=null">
+                AND userTypes = #{condition.userTypes}
+            </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
             </if>
@@ -722,6 +753,9 @@
            </if>
            <if test="code!=null">
                ${groupOp} code ${code.op}  #{code.data}
+           </if>
+           <if test="userTypes!=null">
+               ${groupOp} userTypes ${userTypes.op}  #{userTypes.data}
            </if>
            <if test="creator!=null">
                ${groupOp} creator ${creator.op}  #{creator.data}

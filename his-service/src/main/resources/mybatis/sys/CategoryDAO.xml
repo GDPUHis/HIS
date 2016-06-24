@@ -7,6 +7,7 @@
         id,
         name,
         priority,
+        type,
         creator,
         createDate,
         lastModifier,
@@ -17,6 +18,7 @@
         INSERT INTO eam_sys_category (
 		    name
 		    ,priority
+		    ,type
 		    ,creator
 		    ,createDate
 		    ,lastModifier
@@ -25,6 +27,7 @@
         ) VALUES (
 		    	#{name}
 		    	,#{priority}
+		    	,#{type}
 		    	,#{creator}
 		    	,#{createDate}
 		    	,#{lastModifier}
@@ -40,6 +43,7 @@
         INSERT INTO eam_sys_category (
 		    name
 		    ,priority
+		    ,type
 		    ,creator
 		    ,createDate
 		    ,lastModifier
@@ -48,6 +52,7 @@
         ) VALUES (
 		    	#{map.name}
 		    	,#{map.priority}
+		    	,#{map.type}
 		    	,#{map.creator}
 		    	,#{map.createDate}
 		    	,#{map.lastModifier}
@@ -62,6 +67,7 @@
         <trim prefix="SET" suffixOverrides=",">
 		    name=#{name},
 		    priority=#{priority},
+		    type=#{type},
 		    creator=#{creator},
 		    createDate=#{createDate},
 		    lastModifier=#{lastModifier},
@@ -80,6 +86,9 @@
             </if>
             <if test="map.priority!=null">
                 priority = #{map.priority},
+            </if>
+            <if test="map.type!=null">
+                type = #{map.type},
             </if>
             <if test="map.creator!=null">
                 creator = #{map.creator},
@@ -110,6 +119,9 @@
             <if test="update.priority!=null">
                 priority = #{update.priority},
             </if>
+            <if test="update.type!=null">
+                type = #{update.type},
+            </if>
             <if test="update.creator!=null">
                 creator = #{update.creator},
             </if>
@@ -134,6 +146,9 @@
             <if test="condition.priority!=null">
                 AND priority = #{condition.priority}
             </if>
+            <if test="condition.type!=null">
+                AND type = #{condition.type}
+            </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
             </if>
@@ -157,6 +172,7 @@
         <trim prefix="SET" suffixOverrides=",">
             name = #{name},
             priority = #{priority},
+            type = #{type},
             creator = #{creator},
             createDate = #{createDate},
             lastModifier = #{lastModifier},
@@ -194,6 +210,9 @@
             </if>
             <if test="priority!=null">
                 AND priority = #{priority}
+            </if>
+            <if test="type!=null">
+                AND type = #{type}
             </if>
             <if test="creator!=null">
                 AND creator = #{creator}
@@ -274,6 +293,9 @@
             <if test="condition.priority!=null">
                 ${condition.groupOp}   priority  ${condition.priority.op}  #{condition.priority.data}
             </if>
+            <if test="condition.type!=null">
+                ${condition.groupOp}   type  ${condition.type.op}  #{condition.type.data}
+            </if>
             <if test="condition.creator!=null">
                 ${condition.groupOp}   creator  ${condition.creator.op}  #{condition.creator.data}
             </if>
@@ -315,6 +337,9 @@
             <if test="priority!=null">
                 AND priority like CONCAT('%', #{priority} , '%')
             </if>
+            <if test="type!=null">
+                AND type like CONCAT('%', #{type} , '%')
+            </if>
             <if test="creator!=null">
                 AND creator like CONCAT('%', #{creator} , '%')
             </if>
@@ -351,6 +376,9 @@
             <if test="condition.priority!=null">
                 AND priority = #{condition.priority}
             </if>
+            <if test="condition.type!=null">
+                AND type = #{condition.type}
+            </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
             </if>
@@ -386,6 +414,9 @@
             <if test="condition.priority!=null">
                 AND priority = #{condition.priority}
             </if>
+            <if test="condition.type!=null">
+                AND type = #{condition.type}
+            </if>
             <if test="condition.creator!=null">
                 AND creator = #{condition.creator}
             </if>
@@ -416,6 +447,9 @@
            </if>
            <if test="priority!=null">
                ${groupOp} priority ${priority.op}  #{priority.data}
+           </if>
+           <if test="type!=null">
+               ${groupOp} type ${type.op}  #{type.data}
            </if>
            <if test="creator!=null">
                ${groupOp} creator ${creator.op}  #{creator.data}

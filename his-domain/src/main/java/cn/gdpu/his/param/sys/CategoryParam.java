@@ -11,20 +11,16 @@
 {  维护历史:													
 {  日期        维护人        维护类型						
 {  ---------------------------------------------------------------------------	
-{  2016-06-21  郭旭辉        新建	
+{  2016-06-24  郭旭辉        新建	
 { 	                                                                     
 {*****************************************************************************
 */
 
 package cn.gdpu.his.param.sys;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
+import cn.gdpu.common.param.CreateBaseParam;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import cn.gdpu.common.param.CreateBaseParam;
-
-import java.util.*;
 
 /**
  * 《分类》 查询参数实体
@@ -42,9 +38,14 @@ public class CategoryParam extends CreateBaseParam<Integer> {
 	*字段常量——排序
 	*/
 	public static final String F_Priority="priority";
+	/**
+	*字段常量——分类类型，1：设备分类，2：附件分类，4：合同分类...
+	*/
+	public static final String F_Type="type";
 	
 	private String name; //分类名称
 	private Integer priority; //排序
+	private Integer type; //分类类型，1：设备分类，2：附件分类，4：合同分类...
     
 	/**
 	 *默认空构造函数
@@ -77,12 +78,25 @@ public class CategoryParam extends CreateBaseParam<Integer> {
 	public void setPriority(Integer priority){
 		this.priority = priority;
 	}
+	/**
+	 * @return type 分类类型，1：设备分类，2：附件分类，4：合同分类...
+	 */
+	public Integer getType(){
+		return this.type;
+	}
+	/**
+	 * @param type 分类类型，1：设备分类，2：附件分类，4：合同分类...
+	 */
+	public void setType(Integer type){
+		this.type = type;
+	}
 	
 	public String toString() {
 		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
 			.append("id",getId())
 			.append("name",getName())
 			.append("priority",getPriority())
+			.append("type",getType())
 			.append("creator",getCreator())
 			.append("createDate",getCreateDate())
 			.append("lastModifier",getLastModifier())
