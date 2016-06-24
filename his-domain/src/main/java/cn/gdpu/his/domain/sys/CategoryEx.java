@@ -18,13 +18,6 @@
 
 package cn.gdpu.his.domain.sys;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-
-import java.util.*;
-
 /**
  * 《分类》扩展实体
  * @author 郭旭辉
@@ -32,6 +25,14 @@ import java.util.*;
  */
 public class CategoryEx extends Category {
 	private static final long serialVersionUID = 1L;
-	
+	private String creatorName;
 	//针对Category实体在这里增加额外的属性和对应的get和set方法
+
+	public String getCreatorName() {
+		return creatorName;
+	}
+
+	public void setCreatorName(String creatorName) {
+		this.creatorName = creatorName;
+	}
 }

@@ -13,7 +13,7 @@ public class AccountDto {
     private String jobNumber; //工号
     private Integer positionId; //职位
     private Integer departmentId; //所属部门
-    private String ; //uuid
+    private String uid; //uuid
 
     public String getUsername() {
         return username;

@@ -5,6 +5,7 @@ import cn.gdpu.common.exception.BizException;
 import cn.gdpu.common.utils.ERRORCODE;
 import cn.gdpu.common.utils.RETURNCODE;
 import cn.gdpu.common.utils.User.UserContext;
+import cn.gdpu.his.domain.sys.Category;
 import cn.gdpu.his.domain.sys.CategoryEx;
 import cn.gdpu.his.param.sys.CategoryParam;
 import cn.gdpu.his.service.sys.ICategoryService;

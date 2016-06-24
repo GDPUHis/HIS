@@ -3,5 +3,68 @@
 
 <mapper namespace="cn.gdpu.his.dao.sys.ICategoryDAO">
 	<!-- 在这里存放用户自定义的映射配置（注：CategoryDAO.xml里各节点的ID不能在这里重复出现）  -->
-	
+	<select id="queryListEx" resultType="cn.gdpu.his.domain.sys.CategoryEx">
+		SELECT
+		esc.*,eu.name As creatorName
+		FROM eam_sys_category esc LEFT JOIN eam_user eu
+		ON esc.creator = eu.code
+		<where>
+			<if test="name != null and name != ''">
+				AND esc.name like '%${name}%'
+			</if>
+			<if test="status != -1">
+				AND status = #{status}
+			</if>
+			<if test="type != 0 and type != -1">
+				AND type = #{type}
+			</if>
+		</where>
+		GROUP BY Id
+		ORDER BY priority,createDate DESC
+		<if test="offset != null">
+			limit ${offset}, ${rows}
+		</if>
+	</select>
+
+	<select id="countEx" resultType="java.lang.Integer">
+		SELECT count(1)
+		FROM eam_sys_category
+		<where>
+			<if test="name != null and name != ''">
+				AND name like '%${name}%'
+			</if>
+			<if test="status != null and status != -1">
+				AND status = #{status}
+			</if>
+			<if test="type != null and type != -1">
+				AND type = #{type}
+			</if>
+		</where>
+	</select>
+
+	<select id="findListEx" resultType="cn.gdpu.his.domain.sys.Category">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM eam_sys_category
+		WHERE type = #{type} and status = #{status}
+	</select>
+
+	<update id="updateById">
+		UPDATE  eam_sys_category
+		SET name = #{param.name}, priority = #{param.priority}, type = #{param.type},
+		lastModifier = #{param.lastModifier}, lastModDate=#{param.lastModDate}
+		WHERE id = #{param.id}
+	</update>
+
+	<update id="updateStatus">
+		UPDATE eam_sys_category
+		set status = #{status}
+		WHERE id = #{id}
+	</update>
+
+	<delete id="deleteBatch" parameterType="java.util.List">
+		DELETE FROM eam_sys_category
+		WHERE id in
+		<foreach collection="ids" item="item" open="(" separator="," close=")">#{item}</foreach>
+	</delete>
 </mapper>

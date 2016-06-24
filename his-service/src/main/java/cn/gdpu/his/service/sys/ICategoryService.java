@@ -19,6 +19,7 @@
 package cn.gdpu.his.service.sys;
 
 
+import cn.gdpu.common.domain.AccountDto;
 import cn.gdpu.common.domain.BaseDomain;
 import cn.gdpu.common.domain.BizData4Page;
 import cn.gdpu.common.service.IPageService;
