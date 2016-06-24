@@ -22,7 +22,7 @@ public class TestUser {
 
     @Test
     public void testUUID(){
-        System.out.println(UUID.randomUUID());
+        System.out.println(UUID.randomUUID()  );
     }
 
     @Test
